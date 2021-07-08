@@ -1,0 +1,27 @@
+{
+    "name": "modhomes-nuxt-tcss",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "nuxt",
+        "build": "nuxt build",
+        "start": "nuxt start",
+        "generate": "nuxt generate"
+    },
+    "dependencies": {
+        "core-js": "^3.15.1",
+        "nuxt": "^2.15.7"
+    },
+    "devDependencies": {
+        "@nuxtjs/style-resources": "^1.2.0",
+        "@nuxtjs/tailwindcss": "^4.2.0",
+        "autoprefixer": "^10.2.6",
+        "fibers": "^5.0.0",
+        "node-sass": "^6.0.1",
+        "postcss": "^8.3.5",
+        "sass": "^1.35.1",
+        "sass-loader": "^10.2.0",
+        "sass-resources-loader": "^2.2.3",
+        "tailwindcss": "^2.2.4"
+    }
+}

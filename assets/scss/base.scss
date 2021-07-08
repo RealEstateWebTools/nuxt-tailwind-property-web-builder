@@ -1,0 +1,80 @@
+*,
+*::after,
+*::before {
+      margin: 0;
+      padding: 0;
+      box-sizing: inherit;
+}
+
+body {
+      height: 100%;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+            Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+html {
+      height: 100%;
+      font-size: 62.5%; // DEFAULT STYLES // This defines what 1rem is
+
+      // 'laptop-m': 1537px
+      @include media('<=laptop-m') {
+            font-size: 62.5%; // 1rem = 10px/16px = 62.5% // DEFAULT STYLES // This defines what 1rem is
+      }
+      // 'laptop-s': 1367px
+      @include media('<=laptop-s') {
+            font-size: 56.25%; // 1rem = 9px/16px = 56.25%
+      }
+      // 'laptop-xs': 1281px
+      @include media('<=laptop-xs') {
+            font-size: 50%; // 1rem = 8px/16px = 50%
+      }
+      // 'tablet-l': 1025px (Portrait)
+      @include media('<=tablet-l', 'portrait') {
+            font-size: 62.5%; // 1rem = 10px/16px = 62.5%
+      }
+      // 'tablet-m': 901px (Portrait)
+      @include media('<=tablet-m', 'portrait') {
+            font-size: 56.25%; // 1rem = 9px/16px = 56.25%
+      }
+      // 'tablet-s': 769px (Portrait)
+      @include media('<=tablet-s', 'portrait') {
+            font-size: 50%; // 1rem = 8px/16px = 50%
+      }
+      // 'tablet-xs': 602px (Portrait)
+      @include media('<=tablet-xs', 'portrait') {
+            font-size: 43.75%; // 1rem = 7px/16px = 46.875%
+      }
+      // 'tablet-l': 1025px (Landscape)
+      @include media('<=tablet-l', 'landscape') {
+            font-size: 43.75%; // 1rem = 7px/16px = 46.875%
+      }
+      // 'tablet-m': 901px (Landscape)
+      @include media('<=tablet-m', 'landscape') {
+            font-size: 37.5%; // 1rem = 6px/16px = 37.5%
+      }
+      // 'tablet-s': 769px (Landscape)
+      @include media('<=tablet-s', 'landscape') {
+            font-size: 31.25%; // 1rem = 5px/16px = 31.25%
+      }
+      // 'tablet-xs': 602px (Landscape)
+      @include media('<=tablet-xs', 'landscape') {
+            font-size: 25%; // 1rem = 4px/16px = 25%
+      }
+      // 'mobile-l': 481px
+      @include media('<=mobile-l') {
+            font-size: 56.25%; // 1rem = 9px/16px = 56.25%
+      }
+      // 'mobile-m': 426px
+      @include media('<=mobile-m') {
+            font-size: 50%; // 1rem = 8px/16px = 50%
+      }
+      // 'mobile-s': 376px
+      @include media('<=mobile-s') {
+            font-size: 43.75%; // 1rem = 7px/16px = 46.875%
+      }
+      // 'mobile-xs': 321px
+      @include media('<=mobile-xs') {
+            font-size: 37.5%; // 1rem = 6px/16px = 37.5%
+      }
+}
