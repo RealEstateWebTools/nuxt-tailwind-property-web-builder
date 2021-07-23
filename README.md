@@ -6,7 +6,7 @@
 [![Deploy with Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/RealEstateWebTools/nuxt-tailwind-property-web-builder)
 
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/project?template=https://github.com/zeit/RealEstateWebTools/nuxt-tailwind-property-web-builder)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/project?template=https://github.com/RealEstateWebTools/nuxt-tailwind-property-web-builder)
 
 ## Build Setup
 

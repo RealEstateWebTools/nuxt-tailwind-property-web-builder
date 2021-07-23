@@ -6,7 +6,7 @@
           <PageHeader></PageHeader>
           <PageMain></PageMain>
           <div id="root-hoist-el"></div>
-          <!-- <PageFooter></PageFooter> -->
+          <PageFooter></PageFooter>
         </div>
       </div>
     </div>

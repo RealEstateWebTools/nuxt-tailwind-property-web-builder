@@ -14,20 +14,7 @@ export default {
             { hid: "description", name: "description", content: "" },
             { name: "format-detection", content: "telephone=no" }
         ],
-        script: [
-            {
-                src: "//code.jquery.com/jquery-1.11.0.min.js",
-                body: true
-            },
-            {
-                src: "js/index.js",
-                body: true
-            },
-            {
-                src: "js/slick.min.js",
-                body: true
-            }
-        ],
+        script: [],
         link: [
             { href: "//fonts.googleapis.com/css?family=Roboto" },
             {
