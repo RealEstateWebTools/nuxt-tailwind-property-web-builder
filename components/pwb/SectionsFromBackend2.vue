@@ -7,15 +7,15 @@
         <div v-else>
           <div
             v-for="pageSection of pageDetails.page.page_sections"
-            :key="pageSection.id"
+            :key="pageSection.uuid"
           >
             <div v-html="pageSection.html"></div>
           </div>
-          <h1>PageSections</h1>
+          <h1>PageSections....</h1>
           <ul>
             <li
               v-for="pageSection of pageDetails.page.page_sections"
-              :key="pageSection.id"
+              :key="pageSection.uuid"
             >
               {{ pageSection.uuid }}
             </li>
@@ -32,9 +32,11 @@
 export default {
   components: {},
   props: {
+    pageName: {
+      type: String,
+      default: "home_page",
+    },
     apiEndpoints: {
-      // type: String,
-      // default: ""
       type: Object,
       default() {
         return {
@@ -59,12 +61,26 @@ export default {
     }
   },
   async fetch() {
-    this.pageDetails = await fetch(this.apiEndpoints.pageDetails.url).then(
-      (res) => {
-        // debugger
-        return res.json()
+    let pageDetailsUrl = this.apiEndpoints.pageDetailsBase.url + this.pageName
+    const pageDetails = await fetch(pageDetailsUrl).then((res) => {
+      return res.json()
+    })
+
+    // const post = await fetch(
+    //   `https://jsonplaceholder.typicode.com/posts/${this.$route.params.id}`
+    // ).then((res) => res.json())
+
+    if (pageDetails.page) {
+      this.pageDetails = pageDetails
+    } else {
+      debugger
+      // set status code on server and
+      if (process.server) {
+        this.$nuxt.context.res.statusCode = 404
       }
-    )
+      // use throw new Error()
+      throw new Error("pageDetails not found")
+    }
   },
 }
 </script>
