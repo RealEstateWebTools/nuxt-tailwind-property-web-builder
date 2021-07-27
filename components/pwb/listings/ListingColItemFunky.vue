@@ -3,7 +3,7 @@
     <li
       class="listing-preview-box mt-8 bg-white flex flex-col p-0 rounded shadow"
     >
-      <a :href="currentPropertyUrl">
+      <a :href="currentListingUrl">
         <button
           type="button"
           class="v-btn v-btn--absolute v-btn--is-elevated v-btn--fab v-btn--has-bg v-btn--right v-btn--round v-btn--top theme--dark v-size--small red"
@@ -21,7 +21,7 @@
           <div
             class="h-48 lg:h-auto lg:w-60 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
             :style="
-              'background-image: url(' + currentProperty.thumb_image_url + ');'
+              'background-image: url(' + currentListing.thumb_image_url + ');'
             "
             title=""
           ></div>
@@ -30,10 +30,10 @@
           >
             <div class="mb-8">
               <div class="text-black font-bold text-xl mb-2">
-                {{ currentProperty.title }}
+                {{ currentListing.title }}
               </div>
               <p class="text-3xl text-gray-900">
-                {{ currentProperty.formatted_display_price }}
+                {{ currentListing.formatted_display_price }}
               </p>
               <p class="text-grey-darker text-base"></p>
             </div>
@@ -51,7 +51,7 @@
                   </svg>
                   <p>
                     <span class="text-gray-900 font-bold">
-                      {{ currentProperty.count_bedrooms }}
+                      {{ currentListing.count_bedrooms }}
                     </span>
                     Bedrooms
                   </p>
@@ -69,7 +69,7 @@
                   </svg>
                   <p>
                     <span class="text-gray-900 font-bold">
-                      {{ currentProperty.count_bathrooms }}
+                      {{ currentListing.count_bathrooms }}
                     </span>
                     Bathrooms
                   </p>
@@ -91,7 +91,7 @@ export default {
     // DisplayPriceLegacy,
   },
   props: {
-    currentProperty: {
+    currentListing: {
       type: Object,
       default() {
         return {}
@@ -110,8 +110,8 @@ export default {
   data: () => ({}),
   watch: {},
   computed: {
-    currentPropertyUrl(){
-      return this.currentProperty.n_client_view_url
+    currentListingUrl(){
+      return this.currentListing.n_client_view_url
     }
   },
   mounted: function () {},

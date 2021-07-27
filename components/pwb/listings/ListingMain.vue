@@ -16,7 +16,7 @@
                 pt-10
               "
             >
-              {{ currentProperty.title }}
+              {{ currentListing.title }}
             </h1>
             <div></div>
           </div>
@@ -36,7 +36,7 @@
                 <v-card class="h-full ma-0 pa-0">
                   <div class="listing-v-carousel">
                     <ListingVCarousel
-                      :currentProperty="currentProperty"
+                      :currentListing="currentListing"
                     ></ListingVCarousel>
                   </div>
                 </v-card>
@@ -70,7 +70,7 @@
               <div class="w-full md:w-2/3 flex flex-col flex-grow flex-shrink">
                 <div class="mx-2 py-5">
                   <ListingVitals
-                    :currentProperty="currentProperty"
+                    :currentListing="currentListing"
                   ></ListingVitals>
                 </div>
                 <div class="mb-10">
@@ -88,12 +88,12 @@
                     Description
                   </h1>
                   <p class="text-base leading-relaxed mx-auto">
-                    {{ currentProperty.description }}
+                    {{ currentListing.description }}
                   </p>
                 </div>
                 <div class="grid grid-cols-3 features-container mb-10 gap-4">
                   <div
-                    v-for="feature_field_key in currentProperty.feature_field_keys"
+                    v-for="feature_field_key in currentListing.feature_field_keys"
                     :key="feature_field_key.uuid"
                     class="py-1 w-full"
                   >
@@ -143,42 +143,42 @@ export default {
     ListingVitals,
   },
   mounted() {
-    // this.loadcurrentProperty(this.currentSearchFieldsParams)
+    // this.loadcurrentListing(this.currentSearchFieldsParams)
   },
   watch: {},
   data() {
     return {
-      currentProperty: {},
+      currentListing: {},
     }
   },
   async fetch() {
     // let searchWidgetDetailsUrl =
     //   this.apiEndpoints.searchWidgetDetailsBase.url + this.pageName
-    const currentListingContainer = await fetch(this.currentPropertyUrl).then(
+    const currentListingContainer = await fetch(this.currentListingUrl).then(
       (res) => {
         return res.json()
       }
     )
     if (currentListingContainer.listing) {
-      this.currentProperty = currentListingContainer.listing
+      this.currentListing = currentListingContainer.listing
     } else {
       // set status code on server and
       if (process.server) {
         this.$nuxt.context.res.statusCode = 404
       }
       // use throw new Error()
-      throw new Error("currentProperty not found")
+      throw new Error("currentListing not found")
     }
   },
   methods: {},
   computed: {
-    currentPropertyUrl() {
-      let currentPropertyUrl =
+    currentListingUrl() {
+      let currentListingUrl =
         "http://demo.lvh.me:3000/api_public/v4/en/component_data/listing/ss"
-      return currentPropertyUrl
+      return currentListingUrl
     },
     mapMarkers: function () {
-      let title = this.currentProperty.title || "currr"
+      let title = this.currentListing.title || "currr"
       let mapMarker = {
         position: {
           lat: 36.7213028,
@@ -186,9 +186,9 @@ export default {
         },
         title: title,
       }
-      if (this.currentProperty.latitude) {
-        mapMarker.position.lat = this.currentProperty.latitude
-        mapMarker.position.lng = this.currentProperty.longitude
+      if (this.currentListing.latitude) {
+        mapMarker.position.lat = this.currentListing.latitude
+        mapMarker.position.lng = this.currentListing.longitude
       }
       return [mapMarker]
     },

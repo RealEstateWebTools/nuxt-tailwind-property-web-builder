@@ -8,24 +8,24 @@
               ><i aria-hidden="true" class="v-icon mr-1 material-icons"
                 >hotel</i
               >
-              {{ currentProperty.count_bedrooms }}
+              {{ currentListing.count_bedrooms }}
             </span>
             <span class="title-details"
               ><i aria-hidden="true" class="v-icon mr-1 material-icons"
                 >bathtub</i
               >
-              {{ currentProperty.count_bathrooms }}
+              {{ currentListing.count_bathrooms }}
             </span>
             <span class="title-details"
               ><i aria-hidden="true" class="v-icon mr-1 material-icons"
                 >aspect_ratio</i
               >
-              {{ currentProperty.formatted_constructed_area }}
+              {{ currentListing.formatted_constructed_area }}
             </span>
             <span class="title-details r-price-details">
               <span>
                 <span>
-                  {{ currentProperty.formatted_display_price }}
+                  {{ currentListing.formatted_display_price }}
                 </span>
               </span>
             </span>
@@ -43,7 +43,7 @@ export default {
     // ListingVCarousel,
   },
   mounted() {
-    // this.loadcurrentProperty(this.currentSearchFieldsParams)
+    // this.loadcurrentListing(this.currentSearchFieldsParams)
   },
   watch: {},
   data() {
@@ -52,7 +52,7 @@ export default {
   methods: {},
   computed: {},
   props: {
-    currentProperty: {
+    currentListing: {
       type: Object,
     },
   },

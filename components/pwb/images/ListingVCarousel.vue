@@ -18,7 +18,7 @@
 export default {
   components: {},
   props: {
-    currentProperty: {
+    currentListing: {
       type: Object,
       default: () => {
         general_search_config: {
@@ -34,7 +34,7 @@ export default {
   computed: {
     lightboxImages() {
       var lightboxImages = []
-      var imageDetails = this.currentProperty.listing_photos || []
+      var imageDetails = this.currentListing.listing_photos || []
       if (imageDetails.length > 0) {
         imageDetails.forEach(function (imageDetail, index) {
           lightboxImages.push({

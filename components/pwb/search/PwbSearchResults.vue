@@ -96,7 +96,7 @@
           <ListingColItemFunky
             :removable="false"
             :favouritable="false"
-            :currentProperty="property"
+            :currentListing="property"
             :index="index"
           ></ListingColItemFunky>
         </div>
@@ -113,7 +113,7 @@
           :favouritable="true"
           :noticeSnackbar="noticeSnackbar"
           :noTransitionDelay="true"
-          :currentProperty="property"
+          :currentListing="property"
           :index="index"
         ></ListingColItem>
       </v-flex> -->
