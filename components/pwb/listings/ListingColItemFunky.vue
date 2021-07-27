@@ -3,7 +3,7 @@
     <li
       class="listing-preview-box mt-8 bg-white flex flex-col p-0 rounded shadow"
     >
-      <a :href="currentProperty.url">
+      <a :href="currentPropertyUrl">
         <button
           type="button"
           class="v-btn v-btn--absolute v-btn--is-elevated v-btn--fab v-btn--has-bg v-btn--right v-btn--round v-btn--top theme--dark v-size--small red"
@@ -109,7 +109,11 @@ export default {
   },
   data: () => ({}),
   watch: {},
-  computed: {},
+  computed: {
+    currentPropertyUrl(){
+      return this.currentProperty.n_client_view_url
+    }
+  },
   mounted: function () {},
 }
 </script>
