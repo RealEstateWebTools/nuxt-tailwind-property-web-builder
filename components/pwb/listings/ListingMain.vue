@@ -174,7 +174,7 @@ export default {
   computed: {
     currentListingUrl() {
       let currentListingUrl =
-        "http://demo.lvh.me:3000/api_public/v4/en/component_data/listing/ss"
+        `${this.$config.pwbApiMainHost}/api_public/v4/en/component_data/listing/ss`
       return currentListingUrl
     },
     mapMarkers: function () {

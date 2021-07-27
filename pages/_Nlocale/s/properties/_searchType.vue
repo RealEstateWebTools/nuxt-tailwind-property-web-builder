@@ -8,7 +8,9 @@
             :apiEndpoints="apiEndpoints"
             :pageName="pageName"
           ></SectionsFromBackend2> -->
-          <SearchMain :searchWidgetDetails="searchWidgetDetails"></SearchMain>
+          <SearchMain
+            :searchWidgetConfig="searchWidgetContainer.search_widget"
+          ></SearchMain>
           <div id="root-hoist-el"></div>
           <PageFooter></PageFooter>
         </div>
@@ -28,14 +30,12 @@ export default {
   data() {
     return {
       apiEndpoints: {
-        searchWidgetDetailsBase: {
-          url: "http://demo.lvh.me:3000/api_public/v4/en/component_data/",
+        searchWidgetBase: {
+          url: `${this.$config.pwbApiMainHost}/api_public/v4/en/component_data/`,
         },
       },
-      searchWidgetDetails: {
-        page: {
-          page_sections: [],
-        },
+      searchWidgetContainer: {
+        search_widget: {},
       },
     }
   },
@@ -53,14 +53,14 @@ export default {
   },
   async fetch() {
     let searchWidgetDetailsUrl =
-      this.apiEndpoints.searchWidgetDetailsBase.url + this.pageName
-    const searchWidgetDetails = await fetch(searchWidgetDetailsUrl).then(
+      this.apiEndpoints.searchWidgetBase.url + this.pageName
+    const searchWidgetContainer = await fetch(searchWidgetDetailsUrl).then(
       (res) => {
         return res.json()
       }
     )
-    if (searchWidgetDetails.search_widget) {
-      this.searchWidgetDetails = searchWidgetDetails
+    if (searchWidgetContainer.search_widget) {
+      this.searchWidgetContainer = searchWidgetContainer
     } else {
       debugger
       // set status code on server and
@@ -68,7 +68,7 @@ export default {
         this.$nuxt.context.res.statusCode = 404
       }
       // use throw new Error()
-      throw new Error("searchWidgetDetails not found")
+      throw new Error("searchWidgetContainer not found")
     }
   },
 }

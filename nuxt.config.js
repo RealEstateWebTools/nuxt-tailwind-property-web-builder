@@ -71,5 +71,13 @@ export default {
     modules: [],
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {}
+    build: {},
+    publicRuntimeConfig: {
+        pwbApiMainHost: process.env.PWB_API_MAIN_HOST || "http://demo.lvh.me:3000",
+        // baseURL: process.env.BASE_URL || "https://nuxtjs.org",
+        // baseURL:
+        //     process.env.NODE_ENV === "production"
+        //         ? "https://nuxtjs.org"
+        //         : "https://dev.nuxtjs.org"
+    }
 };

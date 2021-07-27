@@ -13,9 +13,9 @@
               >
                 <template>
                   <VerticalSearchForm
-                    :searchSelectOptions="searchConfig.searchSelectOptions"
+                    :searchSelectOptions="searchWidgetConfig.searchSelectOptions"
                     :currentSearchFieldsParams="currentSearchFieldsParams"
-                    :searchFields="searchConfig.search_fields"
+                    :searchFields="searchWidgetConfig.search_fields"
                     @triggerSearchUpdate="triggerSearchUpdate"
                   ></VerticalSearchForm>
                 </template>
@@ -89,7 +89,7 @@ export default {
       //TODO use props like below to pass in locale etc..
       //h(compToRender, { props: { hoistComponents: hoistComponents } }),
       // data like below is not available early enough..
-      // this.$root.$el.parentElement.dataset.currSearchConfig
+      // this.$root.$el.parentElement.dataset.currsearchWidgetConfig
       this.loadingSearch = true
       // let searchParams = JSON.parse(
       //   JSON.stringify(window.location.search || {})
@@ -200,11 +200,11 @@ export default {
   computed: {
     searchResultsUrl() {
       let searchResultsUrl =
-        "http://demo.lvh.me:3000/api_public/v4/en/search_simple/results_only/op/regular_rentals/city/ignore/features/ignore/bedrooms_min/0/bedrooms_max/ignore/bathrooms_min/0/bathrooms_max/ignore/price_min/ignore/price_max/ignore/type/ignore/sort/priceDesc/page_no/1/cs/ign"
+          `${this.$config.pwbApiMainHost}/api_public/v4/en/search_simple/results_only/op/regular_rentals/city/ignore/features/ignore/bedrooms_min/0/bedrooms_max/ignore/bathrooms_min/0/bathrooms_max/ignore/price_min/ignore/price_max/ignore/type/ignore/sort/priceDesc/page_no/1/cs/ign`
       return searchResultsUrl
     },
     showMap() {
-      if (this.searchConfig.general_search_config.hide_map) {
+      if (this.searchWidgetConfig.general_search_config.hide_map) {
         return false
       } else {
         return this.mapMarkers.length > 0
@@ -215,7 +215,7 @@ export default {
       // defaults from the server
       let searchParams = new URLSearchParams() // (window.location.search)
       let currentSearchFieldsParams = {}
-      let searchFields = this.searchConfig.search_fields || []
+      let searchFields = this.searchWidgetConfig.search_fields || []
       searchFields.forEach((field) => {
         let queryStringVal = searchParams.get(field.queryStringName)
         // If param is set in Url, use that otherwise use default from config
@@ -224,18 +224,19 @@ export default {
       })
       return currentSearchFieldsParams
     },
-    searchConfig() {
-      // let searchConfig = { search_fields: [] }
-      // if (this.$root.$el.parentElement.dataset.currSearchConfig) {
-      // searchConfig = JSON.parse(
-      //   this.$root.$el.parentElement.dataset.currSearchConfig
-      // )
-      // }
-      // let rawData = this.componentData || '{"general_search_config":{}}'
-      // let searchConfig = JSON.parse(rawData)
-      // return searchConfig
-      return this.searchWidgetDetails.search_widget
-    },
+    // searchWidgetConfig() {
+    //   // let searchWidgetConfig = { search_fields: [] }
+    //   // if (this.$root.$el.parentElement.dataset.currsearchWidgetConfig) {
+    //   // searchWidgetConfig = JSON.parse(
+    //   //   this.$root.$el.parentElement.dataset.currsearchWidgetConfig
+    //   // )
+    //   // }
+    //   // let rawData = this.componentData || '{"general_search_config":{}}'
+    //   // let searchWidgetConfig = JSON.parse(rawData)
+    //   // return searchWidgetConfig
+    //   debugger
+    //   return this.searchWidgetDetails.search_widget
+    // },
     currentPageParts() {
       return {}
     },
@@ -244,7 +245,7 @@ export default {
       return mapMarker ? mapMarker.position : { lat: 15, lng: 15 }
     },
     searchType() {
-      return this.searchConfig.search_type // "rentals"
+      return this.searchWidgetConfig.search_type // "rentals"
     },
     mapMarkers() {
       // let mapMarker = {
@@ -281,7 +282,7 @@ export default {
     },
   },
   props: {
-    searchWidgetDetails: {
+    searchWidgetConfig: {
       type: Object,
     },
     componentData: {

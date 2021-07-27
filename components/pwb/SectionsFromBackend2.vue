@@ -41,7 +41,8 @@ export default {
       default() {
         return {
           pageDetails: {
-            url: "http://demo.lvh.me:3000/api_public/v4/en/page/home_page",
+            url: `${this.$config.pwbApiMainHost}/api_public/v4/en/page/home_page/`,
+            // url: "http://demo.lvh.me:3000/api_public/v4/en/page/home_page",
           },
           // clientSettings: {
           //   url:"https://marbella-floating-app.weebrix.com/api_public/v3/en/client_settings"

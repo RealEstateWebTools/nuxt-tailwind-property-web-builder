@@ -29,7 +29,7 @@ export default {
     return {
       apiEndpoints: {
         searchWidgetDetailsBase: {
-          url: "http://demo.lvh.me:3000/api_public/v4/en/component_data/",
+          url: `${this.$config.pwbApiMainHost}/api_public/v4/en/component_data/`,
         },
       },
       searchWidgetDetails: {
