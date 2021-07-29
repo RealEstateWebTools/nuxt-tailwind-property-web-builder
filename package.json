@@ -4,7 +4,8 @@
     "private": true,
     "scripts": {
         "dev": "nuxt",
-        "build": "nuxt build",
+        "dev:host": "nuxt --hostname '0' --port 8000"
+,        "build": "nuxt build",
         "start": "nuxt start",
         "generate": "nuxt generate"
     },
