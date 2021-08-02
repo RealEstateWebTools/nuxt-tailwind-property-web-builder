@@ -4,12 +4,13 @@
     "private": true,
     "scripts": {
         "dev": "nuxt",
-        "dev:host": "nuxt --hostname '0' --port 8000"
-,        "build": "nuxt build",
+        "dev:host": "nuxt --hostname '0' --port 8000",
+        "build": "nuxt build",
         "start": "nuxt start",
         "generate": "nuxt generate"
     },
     "dependencies": {
+        "@nuxtjs/axios": "^5.13.6",
         "core-js": "^3.15.1",
         "fibers": "^5.0.0",
         "nuxt": "^2.15.7"
