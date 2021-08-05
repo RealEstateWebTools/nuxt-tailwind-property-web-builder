@@ -68,16 +68,24 @@ export default {
     ],
 
     // Modules: https://go.nuxtjs.dev/config-modules
-    modules: [],
-
+    // modules: [],.
+    // modules: ["@nuxtjs/axios"],
+    // axios: {
+    //     // proxy: true
+    // },
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {},
     publicRuntimeConfig: {
-        pwbApiMainHost: process.env.PWB_API_MAIN_HOST || "http://demo.lvh.me:3000",
+        pwbApiMainHost:
+            process.env.PWB_API_MAIN_HOST || "http://demo.lvh.me:3000"
         // baseURL: process.env.BASE_URL || "https://nuxtjs.org",
         // baseURL:
         //     process.env.NODE_ENV === "production"
         //         ? "https://nuxtjs.org"
         //         : "https://dev.nuxtjs.org"
-    }
+    },
+    serverMiddleware: [
+        "~/server-middleware/logger",
+        { path: "/passthrough", handler: "~/server-middleware/passthrough-json.js" }
+    ]
 };
