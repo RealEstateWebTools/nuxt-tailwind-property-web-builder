@@ -3,6 +3,20 @@ export default {
     //     port: 8000 // default: 3000
     // },
     // Global page headers: https://go.nuxtjs.dev/config-head
+    // router: {
+    //     extendRoutes(routes, resolve) {
+    //         routes.push({
+    //             path: "/users/:id",
+    //             components: {
+    //                 default: resolve(__dirname, "pages/users"), // or routes[index].component
+    //                 // modal: resolve(__dirname, "components/modal.vue")
+    //             },
+    //             chunkNames: {
+    //                 modal: "components/modal"
+    //             }
+    //         });
+    //     }
+    // },
     head: {
         title: "modhomes-nuxt-tcss",
         htmlAttrs: {
@@ -86,6 +100,9 @@ export default {
     },
     serverMiddleware: [
         "~/server-middleware/logger",
-        { path: "/passthrough", handler: "~/server-middleware/passthrough-json.js" }
+        {
+            path: "/passthrough",
+            handler: "~/server-middleware/passthrough-json.js"
+        }
     ]
 };
