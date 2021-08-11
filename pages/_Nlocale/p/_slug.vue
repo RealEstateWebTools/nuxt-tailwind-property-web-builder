@@ -19,11 +19,17 @@
 
 <script>
 import PageFooter from "~/components/pwb/PageFooter"
-import PageHeader from "~/components/pwb/PageHeader"
+// import PageHeader from "~/components/pwb/PageHeader"
 import PageMain from "~/components/pwb/PageMain"
 import PageHeaderFromBackend from "~/components/pwb/PageHeaderFromBackend.vue"
 import PageSections from "~/components/pwb/json-loaders/PageSections.vue"
 export default {
+  components: {
+    PageFooter,
+    PageMain,
+    PageSections,
+    PageHeaderFromBackend,
+  },
   props: {},
   data() {
     return {
@@ -42,13 +48,6 @@ export default {
     pageName() {
       return this.$route.params.slug || "home_page"
     },
-  },
-  components: {
-    PageFooter,
-    PageHeader,
-    PageMain,
-    PageSections,
-    PageHeaderFromBackend,
   },
 }
 </script>

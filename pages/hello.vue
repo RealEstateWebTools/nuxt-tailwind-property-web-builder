@@ -11,14 +11,8 @@
 </template>
 
 <script>
-import PageFooter from "~/components/pwb/PageFooter"
-import PageHeader from "~/components/pwb/PageHeader"
-import PageMain from "~/components/pwb/PageMain"
 export default {
   components: {
-    PageFooter,
-    PageHeader,
-    PageMain,
   },
 }
 </script>

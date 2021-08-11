@@ -19,7 +19,7 @@
 
 <script>
 import PageFooter from "~/components/pwb/PageFooter"
-import PageHeader from "~/components/pwb/PageHeader"
+// import PageHeader from "~/components/pwb/PageHeader"
 import ListingMain from "~/components/pwb/listings/ListingMain"
 import PageHeaderFromBackend from "~/components/pwb/PageHeaderFromBackend.vue"
 import PageSections from "~/components/pwb/json-loaders/PageSections.vue"
@@ -46,7 +46,7 @@ export default {
   },
   components: {
     PageFooter,
-    PageHeader,
+    // PageHeader,
     ListingMain,
     PageSections,
     PageHeaderFromBackend,
