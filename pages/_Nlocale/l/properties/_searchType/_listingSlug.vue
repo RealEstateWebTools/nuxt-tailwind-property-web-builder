@@ -4,10 +4,10 @@
       <div class="pwb-p-site v-application--wrap w-full top-nav-admin-hoist">
         <div class="flex flex-col min-h-screen">
           <PageHeaderFromBackend></PageHeaderFromBackend>
-          <!-- <SectionsFromBackend2
+          <!-- <PageSections
             :apiEndpoints="apiEndpoints"
             :pageName="pageName"
-          ></SectionsFromBackend2> -->
+          ></PageSections> -->
           <ListingMain :searchWidgetDetails="searchWidgetDetails"></ListingMain>
           <div id="root-hoist-el"></div>
           <PageFooter></PageFooter>
@@ -22,7 +22,7 @@ import PageFooter from "~/components/pwb/PageFooter"
 import PageHeader from "~/components/pwb/PageHeader"
 import ListingMain from "~/components/pwb/listings/ListingMain"
 import PageHeaderFromBackend from "~/components/pwb/PageHeaderFromBackend.vue"
-import SectionsFromBackend2 from "~/components/pwb/SectionsFromBackend2.vue"
+import PageSections from "~/components/pwb/json-loaders/PageSections.vue"
 export default {
   props: {},
   data() {
@@ -48,7 +48,7 @@ export default {
     PageFooter,
     PageHeader,
     ListingMain,
-    SectionsFromBackend2,
+    PageSections,
     PageHeaderFromBackend,
   },
   async fetch() {

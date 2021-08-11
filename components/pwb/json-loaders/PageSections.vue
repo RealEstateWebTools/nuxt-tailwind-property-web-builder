@@ -58,7 +58,7 @@ export default {
           page_sections: [],
         },
       },
-      currComponentName: "SectionsFromBackend2",
+      currComponentName: "PageSections",
     }
   },
   computed: {
