@@ -84,21 +84,36 @@
         </div>
       </div>
     </div>
+    <SourceJsonLink
+      @refreshSourceJson="$fetch"
+      :currComponentName="currComponentName"
+      :sourceJsonUrl="sourceJsonUrl"
+    ></SourceJsonLink>
   </nav>
 </template>
-
 <script>
+import SourceJsonLink from "~/components/pwb/mgmt/SourceJsonLink"
+// import LoggingMixin from "~/mixins/LoggingMixin"
 export default {
+  // mixins: [LoggingMixin(__filename)],
+  components: {
+    SourceJsonLink,
+  },
   data() {
     return {
-      clientSettings: {},
+      clientSettings: {
+        navigation: {},
+      },
+      currComponentName: "PageHeaderFromBackend",
     }
   },
+  computed: {
+    sourceJsonUrl() {
+      return "https://marbella-floating-app.weebrix.com/api_public/v3/en/client_settings"
+    },
+  },
   async fetch() {
-    this.clientSettings = await fetch(
-      "https://marbella-floating-app.weebrix.com/api_public/v3/en/client_settings"
-    ).then((res) => {
-      // debugger
+    this.clientSettings = await fetch(this.sourceJsonUrl).then((res) => {
       return res.json()
     })
   },

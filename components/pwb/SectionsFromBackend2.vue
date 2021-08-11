@@ -11,16 +11,11 @@
           >
             <div v-html="pageSection.html"></div>
           </div>
-          <h1>PageSections....</h1>
-          <ul>
-            <li
-              v-for="pageSection of pageDetails.page.page_sections"
-              :key="pageSection.uuid"
-            >
-              {{ pageSection.uuid }}
-            </li>
-          </ul>
-          <button @click="$fetch">Refresh</button>
+          <SourceJsonLink
+            @refreshSourceJson="$fetch"
+            :currComponentName="currComponentName"
+            :sourceJsonUrl="sourceJsonUrl"
+          ></SourceJsonLink>
         </div>
       </div>
     </div>
@@ -28,9 +23,13 @@
 </template>
 
 <script>
-// import SectionA from "~/components/pwb/sections/SectionA"
+import SourceJsonLink from "~/components/pwb/mgmt/SourceJsonLink"
+// import LoggingMixin from "~/mixins/LoggingMixin"
 export default {
-  components: {},
+  // mixins: [LoggingMixin(__filename)],
+  components: {
+    SourceJsonLink,
+  },
   props: {
     pageName: {
       type: String,
@@ -59,11 +58,24 @@ export default {
           page_sections: [],
         },
       },
+      currComponentName: "SectionsFromBackend2",
     }
   },
+  computed: {
+    sourceJsonUrl() {
+      return this.apiEndpoints.pageDetailsBase.url + this.pageName
+    },
+    // currComponentName() {
+    //   return this.$options.name
+    // },
+  },
   async fetch() {
-    let pageDetailsUrl = this.apiEndpoints.pageDetailsBase.url + this.pageName
-    const pageDetails = await fetch(pageDetailsUrl).then((res) => {
+    // let sourceJsonUrl = this.apiEndpoints.pageDetailsBase.url + this.pageName
+    // debugger
+    console.log(
+      `${this.currComponentName} ...Fetching data from ${this.sourceJsonUrl}`
+    )
+    const pageDetails = await fetch(this.sourceJsonUrl).then((res) => {
       return res.json()
     })
 
