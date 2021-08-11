@@ -128,6 +128,11 @@
         <div id="listingMapTarget" class="listing-map-target"></div>
       </div>
     </div>
+    <SourceJsonLink
+      @refreshSourceJson="$fetch"
+      :currComponentName="currComponentName"
+      :sourceJsonUrl="currentListingUrl"
+    ></SourceJsonLink>
   </main>
 </template>
 <script>
@@ -137,8 +142,10 @@
 // import NarrowEnquiryForm from "~/components/pwb/forms/NarrowListingEnquiryForm"
 import ListingVCarousel from "~/components/pwb/images/ListingVCarousel"
 import ListingVitals from "~/components/pwb/listings/ListingVitals"
+import SourceJsonLink from "~/components/pwb/mgmt/SourceJsonLink"
 export default {
   components: {
+    SourceJsonLink,
     ListingVCarousel,
     ListingVitals,
   },
@@ -149,11 +156,10 @@ export default {
   data() {
     return {
       currentListing: {},
+      currComponentName: "ListingMain",
     }
   },
   async fetch() {
-    // let searchWidgetDetailsUrl =
-    //   this.apiEndpoints.searchWidgetDetailsBase.url + this.pageName
     const currentListingContainer = await fetch(this.currentListingUrl).then(
       (res) => {
         return res.json()
@@ -173,8 +179,7 @@ export default {
   methods: {},
   computed: {
     currentListingUrl() {
-      let currentListingUrl =
-        `${this.$config.pwbApiMainHost}/api_public/v4/en/component_data/listing/ss`
+      let currentListingUrl = `${this.$config.pwbApiMainHost}/api_public/v4/en/component_data/listing/ss`
       return currentListingUrl
     },
     mapMarkers: function () {
@@ -194,9 +199,6 @@ export default {
     },
   },
   props: {
-    // searchWidgetDetails: {
-    //   type: Object,
-    // },
     // componentData: {
     //   type: String,
     // },

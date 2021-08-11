@@ -1,24 +1,17 @@
 <template>
-  <div class="pwb-root">
-    <div class="v-application v-application--is-ltr theme--light">
-      <div class="pwb-p-site v-application--wrap w-full top-nav-admin-hoist">
-        <div class="flex flex-col min-h-screen">
-          <!-- <PageHeaderFromBackend></PageHeaderFromBackend> -->
-          <ListingMain :searchWidgetDetails="searchWidgetDetails"></ListingMain>
-          <div id="root-hoist-el"></div>
-          <!-- <PageFooter></PageFooter> -->
-        </div>
-      </div>
-    </div>
+  <div class="listing-slug">
+    <ListingMain></ListingMain>
   </div>
 </template>
 
 <script>
-// import PageFooter from "~/components/pwb/PageFooter"
 import ListingMain from "~/components/pwb/listings/ListingMain"
-// import PageHeaderFromBackend from "~/components/pwb/PageHeaderFromBackend.vue"
-import PageSections from "~/components/pwb/json-loaders/PageSections.vue"
+// import SourceJsonLink from "~/components/pwb/mgmt/SourceJsonLink"
 export default {
+  components: {
+    ListingMain,
+    // SourceJsonLink,
+  },
   props: {},
   data() {
     return {
@@ -35,35 +28,32 @@ export default {
     }
   },
   computed: {
+    sourceJsonUrl() {
+      return this.apiEndpoints.searchWidgetDetailsBase.url + this.pageName
+    },
     pageName() {
       return this.$route.params.slug || "home_page"
     },
   },
-  components: {
-    // PageFooter,
-    ListingMain,
-    PageSections,
-    // PageHeaderFromBackend,
-  },
   async fetch() {
-    let searchWidgetDetailsUrl =
-      this.apiEndpoints.searchWidgetDetailsBase.url + this.pageName
-    const searchWidgetDetails = await fetch(searchWidgetDetailsUrl).then(
-      (res) => {
-        return res.json()
-      }
-    )
-    if (searchWidgetDetails.search_widget) {
-      this.searchWidgetDetails = searchWidgetDetails
-    } else {
-      debugger
-      // set status code on server and
-      if (process.server) {
-        this.$nuxt.context.res.statusCode = 404
-      }
-      // use throw new Error()
-      throw new Error("searchWidgetDetails not found")
-    }
+    // // let sourceJsonUrl =
+    // //   this.apiEndpoints.searchWidgetDetailsBase.url + this.pageName
+    // const searchWidgetDetails = await fetch(this.sourceJsonUrl).then(
+    //   (res) => {
+    //     return res.json()
+    //   }
+    // )
+    // if (searchWidgetDetails.search_widget) {
+    //   this.searchWidgetDetails = searchWidgetDetails
+    // } else {
+    //   debugger
+    //   // set status code on server and
+    //   if (process.server) {
+    //     this.$nuxt.context.res.statusCode = 404
+    //   }
+    //   // use throw new Error()
+    //   throw new Error("searchWidgetDetails not found")
+    // }
   },
 }
 </script>
