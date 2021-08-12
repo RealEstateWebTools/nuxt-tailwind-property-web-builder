@@ -64,7 +64,12 @@ export default {
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
-    components: true,
+    // components: [ { path: '~/components', global: 'dev' } ]
+    // components: null
+    components: false,
+    // Above setting has implications for dev loading speed:
+    // https://www.reddit.com/r/Nuxt/comments/kaekug/why_is_the_nuxt_dev_server_so_slow/
+    // https://github.com/nuxt/components/issues/18
 
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
     buildModules: [
