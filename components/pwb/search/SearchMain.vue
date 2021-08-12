@@ -13,7 +13,9 @@
               >
                 <template>
                   <VerticalSearchForm
-                    :searchSelectOptions="searchWidgetConfig.searchSelectOptions"
+                    :searchSelectOptions="
+                      searchWidgetConfig.searchSelectOptions
+                    "
                     :currentSearchFieldsParams="currentSearchFieldsParams"
                     :searchFields="searchWidgetConfig.search_fields"
                     @triggerSearchUpdate="triggerSearchUpdate"
@@ -28,6 +30,11 @@
                   @paginationTrigger="triggerSearchUpdate"
                 ></PwbSearchResults>
               </div>
+              <SourceJsonLink
+                @refreshSourceJson="$fetch"
+                :currComponentName="currComponentName"
+                :sourceJsonUrl="searchResultsUrl"
+              ></SourceJsonLink>
             </v-layout>
             <v-layout row wrap>
               <v-flex xl10 offset-xl1 xs12>
@@ -42,12 +49,13 @@
     </div>
   </main>
 </template>
-
 <script>
 import VerticalSearchForm from "~/components/pwb/search/VerticalSearchForm"
 import PwbSearchResults from "~/components/pwb/search/PwbSearchResults"
+import SourceJsonLink from "~/components/pwb/mgmt/SourceJsonLink"
 export default {
   components: {
+    SourceJsonLink,
     VerticalSearchForm,
     PwbSearchResults,
   },
@@ -57,6 +65,7 @@ export default {
   watch: {},
   data() {
     return {
+      currComponentName: "SearchMain",
       loadingSearch: false,
       resultsObject: {
         query_info: {},
@@ -68,9 +77,11 @@ export default {
   async fetch() {
     // let searchWidgetDetailsUrl =
     //   this.apiEndpoints.searchWidgetDetailsBase.url + this.pageName
-    const resultsObjectContainer = await fetch(this.searchResultsUrl).then((res) => {
-      return res.json()
-    })
+    const resultsObjectContainer = await fetch(this.searchResultsUrl).then(
+      (res) => {
+        return res.json()
+      }
+    )
     if (resultsObjectContainer.results) {
       this.loadingSearch = false
       this.resultsObject = resultsObjectContainer.results
@@ -199,8 +210,7 @@ export default {
   },
   computed: {
     searchResultsUrl() {
-      let searchResultsUrl =
-          `${this.$config.pwbApiMainHost}/api_public/v4/en/search_simple/results_only/op/regular_rentals/city/ignore/features/ignore/bedrooms_min/0/bedrooms_max/ignore/bathrooms_min/0/bathrooms_max/ignore/price_min/ignore/price_max/ignore/type/ignore/sort/priceDesc/page_no/1/cs/ign`
+      let searchResultsUrl = `${this.$config.pwbApiMainHost}/api_public/v4/en/search_simple/results_only/op/regular_rentals/city/ignore/features/ignore/bedrooms_min/0/bedrooms_max/ignore/bathrooms_min/0/bathrooms_max/ignore/price_min/ignore/price_max/ignore/type/ignore/sort/priceDesc/page_no/1/cs/ign`
       return searchResultsUrl
     },
     showMap() {

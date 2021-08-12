@@ -1,29 +1,29 @@
 <template>
-  <div class="pwb-root">
-    <div class="v-application v-application--is-ltr theme--light">
-      <div class="pwb-p-site v-application--wrap w-full top-nav-admin-hoist">
-        <div class="flex flex-col min-h-screen">
-          <!-- <PageHeaderFromBackend></PageHeaderFromBackend> -->
-          <SearchMain
-            :searchWidgetConfig="searchWidgetContainer.search_widget"
-          ></SearchMain>
-          <div id="root-hoist-el"></div>
-          <!-- <PageFooter></PageFooter> -->
-        </div>
-      </div>
-    </div>
+  <div class="flex flex-col min-h-screen">
+    <SearchMain
+      :searchWidgetConfig="searchWidgetContainer.search_widget"
+    ></SearchMain>
+    <SourceJsonLink
+      @refreshSourceJson="$fetch"
+      :currComponentName="currComponentName"
+      :sourceJsonUrl="searchWidgetDetailsUrl"
+    ></SourceJsonLink>
   </div>
 </template>
-
 <script>
-// import PageFooter from "~/components/pwb/PageFooter"
+import SourceJsonLink from "~/components/pwb/mgmt/SourceJsonLink"
 import SearchMain from "~/components/pwb/search/SearchMain"
-// import PageHeaderFromBackend from "~/components/pwb/PageHeaderFromBackend.vue"
-import PageSections from "~/components/pwb/json-loaders/PageSections.vue"
+// import PageSections from "~/components/pwb/json-loaders/PageSections.vue"
 export default {
+  components: {
+    SearchMain,
+    SourceJsonLink,
+    // PageSections,
+  },
   props: {},
   data() {
     return {
+      currComponentName: "_searchType",
       apiEndpoints: {
         searchWidgetBase: {
           url: `${this.$config.pwbApiMainHost}/api_public/v4/en/component_data/`,
@@ -38,18 +38,14 @@ export default {
     pageName() {
       return this.$route.params.slug || "home_page"
     },
-  },
-  components: {
-    // PageFooter,
-    // PageHeader,
-    SearchMain,
-    PageSections,
-    // PageHeaderFromBackend,
+    searchWidgetDetailsUrl() {
+      return this.apiEndpoints.searchWidgetBase.url + this.pageName
+    },
   },
   async fetch() {
-    let searchWidgetDetailsUrl =
-      this.apiEndpoints.searchWidgetBase.url + this.pageName
-    const searchWidgetContainer = await fetch(searchWidgetDetailsUrl).then(
+    // let searchWidgetDetailsUrl =
+    //   this.apiEndpoints.searchWidgetBase.url + this.pageName
+    const searchWidgetContainer = await fetch(this.searchWidgetDetailsUrl).then(
       (res) => {
         return res.json()
       }
