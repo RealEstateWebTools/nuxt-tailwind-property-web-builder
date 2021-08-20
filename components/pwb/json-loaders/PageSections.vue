@@ -3,7 +3,10 @@
     <div style="width: 100%" class="all-sects-ct">
       <div class="">
         <p v-if="$fetchState.pending">Fetching pageSections...</p>
-        <p v-else-if="$fetchState.error">An error occurred :(</p>
+        <div v-else-if="$fetchState.error">
+          <div>An error occurred :(</div>
+          <div>{{ $fetchState.error }}</div>
+        </div>
         <div v-else>
           <div
             v-for="pageSection of pageDetails.page.page_sections"

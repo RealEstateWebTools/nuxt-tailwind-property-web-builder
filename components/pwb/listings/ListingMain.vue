@@ -69,9 +69,10 @@
             >
               <div class="w-full md:w-2/3 flex flex-col flex-grow flex-shrink">
                 <div class="mx-2 py-5">
-                  <ListingVitals
+                  TODO - figure out why ListingVitals component breaks this page
+                  <!-- <ListingVitals
                     :currentListing="currentListing"
-                  ></ListingVitals>
+                  ></ListingVitals> -->
                 </div>
                 <div class="mb-10">
                   <h1
@@ -148,6 +149,11 @@ export default {
     SourceJsonLink,
     ListingVCarousel,
     ListingVitals,
+  },
+  errorCaptured(error, vm, info) {
+    console.log("error intercepted")
+    console.log(error, vm, info)
+    return false // prevent Nuxt from handling the error
   },
   mounted() {
     // this.loadcurrentListing(this.currentSearchFieldsParams)
