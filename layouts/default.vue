@@ -15,7 +15,9 @@
 <script>
 import PageFooter from "~/components/pwb/PageFooter"
 import PageHeaderFromBackend from "~/components/pwb/PageHeaderFromBackend.vue"
+import LoggingMixin from "~/mixins/LoggingMixin"
 export default {
+  mixins: [LoggingMixin],
   components: {
     PageHeaderFromBackend,
     PageFooter,

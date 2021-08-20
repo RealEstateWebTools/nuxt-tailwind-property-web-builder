@@ -27,9 +27,9 @@ export default {
           url: `${this.$config.pwbApiMainHost}/api_public/v4/en/page/`,
           // url: "http://demo.lvh.me:3000/api_public/v4/en/page/",
         },
-        clientSettings: {
-          url: "https://marbella-floating-app.weebrix.com/api_public/v3/en/client_settings",
-        },
+        // clientSettings: {
+        //   url: "https://marbella-floating-app.weebrix.com/api_public/v3/en/client_settings",
+        // },
       },
     }
   },
