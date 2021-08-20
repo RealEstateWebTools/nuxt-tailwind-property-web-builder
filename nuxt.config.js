@@ -1,4 +1,5 @@
 export default {
+    debug: true,
     // server: {
     //     port: 8000 // default: 3000
     // },
